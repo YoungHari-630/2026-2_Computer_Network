@@ -1,125 +1,78 @@
-# Computer Networks · Labs
+# 2026-2 컴퓨터 네트워크 실습
 
-2026-2 · Korea University Sejong · **Weeks 2 – 7**
+고려대학교 세종캠퍼스 컴퓨터 네트워크 과목의 실습 및 과제 제출을 위한 개인 저장소입니다.
 
-This is the lab repository. Clone it and work inside it.
+원본 실습 저장소:
+`codingchild2424/2026-lecture-network-practice`
 
-```bash
-git clone https://github.com/codingchild2424/2026-lecture-network-practice.git
-cd 2026-lecture-network-practice
-```
-
-The slides live separately and link here week by week.
+교수님이 제공한 실습 코드를 기반으로 각 주차의 과제를 수행하고,
+직접 작성한 코드와 측정 결과를 기록합니다.
 
 ---
 
-## The weeks
+## Week 3 · DNS Hierarchy and CDNs
 
-| Week | Folder | Subject |
-|---|---|---|
-| 2 | `w02-agent/` | working with a coding agent |
-| 3 | `w03-dns/` | DNS hierarchy and CDNs |
-| 4 | `w04-tcp/` | reliability, measurement, congestion |
-| 5 | `w05-ip-nat/` | addresses, subnets, NAT, DHCP |
-| 6 | `w06-routing/` | routing and reconvergence |
-| 7 | `w07-ethernet-arp/` | Ethernet, ARP and switching |
+폴더:
 
-Weeks 9 – 15 are the project. There are no folders for them here.
+`w03-dns/`
 
-## How a week works
+이번 주차에서는 DNS 계층 구조와 CDN의 동작을 실습했습니다.
 
-Every folder holds the same things:
+### Task 1 · Iterative DNS Resolver
 
-```
-wNN-topic/
-├── README.md        what the week is about, and the three tasks
-├── task1.md         one task, its requirements, its pass condition
-├── task2.md
-├── task3.md
-├── task1_*.py       the code you write
-├── task2_*.py
-├── task3_*.py
-├── bench.py         the measuring harness for task 3 - do not edit it
-└── test_tasks.py    run this before you submit
-```
+Root DNS 서버에서 시작하여 TLD 및 authoritative DNS 서버를 직접 따라가는
+iterative DNS resolver를 구현했습니다.
 
-**Three tasks a week**, and they are different in kind:
+일반 recursive resolver에 전체 질의를 맡기지 않고,
+delegation, NS record, glue record, CNAME 등을 직접 처리하도록 구현했습니다.
 
-| | |
-|---|---|
-| **Task 1 · implementation** | build the mechanism yourself. The tool that normally does it is not allowed |
-| **Task 2 · measurement** | your own machine, your own traffic, your own two networks. **This is the one nobody can do for you** |
-| **Task 3 · improvement** | a deliberately bad implementation is committed here. Beat it, measured by `bench.py` |
+### Task 2 · DNS / CDN Measurement
 
-There is no separate assignment. **The three tasks are the assignment.**
+Wireshark를 이용하여 실제 DNS query와 response를 캡처하고 분석했습니다.
 
-## Submitting
+또한 서로 다른 두 네트워크 환경에서 여러 DNS resolver를 사용하여
+CDN의 DNS steering 여부를 측정했습니다.
 
-Put everything under that week's `out/`. Then:
+측정 환경:
 
-```bash
-python3 test_tasks.py         # does it pass?
-python3 ../check.py w03       # is anything missing?
-```
+- Campus Wi-Fi
+- Phone Hotspot
 
-`test_tasks.py` runs your code and checks it against a reference where one exists.
-`check.py` only looks for files. Neither of them can tell whether you understood
-anything, which is what `out/observation.md` is for — **2 to 3 lines per task**,
-and it is the centre of the grade. A capture file proves you ran a tool. It does
-not prove you read what came back.
+결과 파일은 `w03-dns/out/`에 저장되어 있습니다.
+
+### Task 3 · DNS Cache Improvement
+
+제공된 `BaselineCache`의 문제점을 분석하고,
+실제 DNS TTL을 따르는 `YourCache`를 구현했습니다.
+
+Benchmark 결과:
+
+| Cache | Upstream Queries | Hit Rate | Stale |
+|---|---:|---:|---:|
+| Baseline | 325 | 67.5% | 266 |
+| YourCache | 275 | 72.5% | 0 |
+
+TTL을 정확히 적용하여 stale response를 제거하고,
+upstream query를 줄였습니다.
 
 ---
 
-## Running environment
+## Week 3 결과물
 
-### Recommended · the container
+`w03-dns/out/`
 
-One container instead of installing twelve tools, and everybody gets the same
-output from `dig` and `iperf3`.
-
-```bash
-# with Docker Desktop installed (Windows and macOS alike)
-cd 2026-lecture-network-practice
-docker compose build
-docker compose run --rm lab        # an Ubuntu shell
-```
-
-Inside: `tshark` `tcpdump` `dig` `curl` `traceroute` `mtr` `iperf3` `python3`
-`jq` `ipcalc`.
-
-### Capture on the host
-
-The container cannot see your laptop's network card — on macOS especially, since
-it runs inside a Linux VM.
-
-- **capture** with Wireshark on the host
-- **analyse** by putting the file in `wNN-*/out/` and running `tshark -r` in the container
-
-### If you cannot run Docker
-
-Nothing here is blocked by that. Tasks 1 and 3 are pure Python everywhere. Task 2
-has a **path (B)** in every week, using the textbook authors' published traces —
-see `traces/README.md`. Path (B) is weaker, and each week's `task2.md` says
-exactly what it weakens and what you have to write instead.
+- `dns.pcapng` — 실제 DNS 패킷 캡처
+- `chains.json` — CDN / DNS resolver 측정 데이터
+- `report.md` — DNS 및 CDN steering 분석
+- `bench.txt` — DNS cache benchmark 결과
+- `observation.md` — 각 Task에서 관찰하고 이해한 내용
 
 ---
 
-## Measurement ethics
+## 제출 전 검사
 
-This course handles packets. Breaking any of these is not a lab, it is an incident.
+```bash
+cd w03-dns
 
-- Measure **only networks and devices you are authorised to use**
-- Do not intercept anyone else's traffic, and do not capture wireless you do not own
-- Do not run load tests against university infrastructure
-- **Check your captures for other people's data before submitting.** A `port 53`
-  or `port 443` capture records every site your machine touched, including
-  background applications. Close what you can, capture briefly, and look at the
-  file before you hand it in
-
-If a capture caught someone's personal data, delete it and take it again. If you
-cannot clean it, switch to path (B).
-
-## Grading
-
-Part of the 10% participation score. Each week is small, which makes it easy to
-skip. The observation write-up is the centre of it.
+python3 test_tasks.py
+python3 ../check.py w03
