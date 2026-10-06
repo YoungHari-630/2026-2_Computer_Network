@@ -21,7 +21,7 @@ addresses must agree. A name behind a CDN may legitimately return a different
 address each time; the harness compares the *set of authoritative nameservers*
 you ended at for those, not the address.
 """
-import argparse, subprocess, sys
+import argparse, random, socket, struct, subprocess, sys
 
 # Root servers. Everything starts here; there is no earlier step.
 ROOT_SERVERS = [
@@ -70,9 +70,290 @@ class Resolver:
         dig @198.41.0.4 www.korea.ac.kr +norecurse
     """
 
+    TIMEOUT = 2.0
+    MAX_DEPTH = 20
+    MAX_QUERIES = 100
+
     def resolve(self, name):
-        raise NotImplementedError(
-            "Implement the iterative walk: root -> TLD -> authoritative")
+        """Resolve an IPv4 address by following DNS referrals ourselves."""
+        name = self._normalise_name(name)
+        path = []
+        address = self._resolve_name(name, path, depth=0, active_names=set())
+        return address, path
+
+    def _resolve_name(self, name, path, depth, active_names):
+        """Walk root -> delegation -> authoritative for one DNS name.
+
+        This method is also used to resolve an NS hostname when a referral has
+        no glue.  Each such call starts at a root server, just like a normal
+        iterative resolver would.
+        """
+        if depth > self.MAX_DEPTH:
+            raise RuntimeError("maximum DNS resolution depth exceeded")
+        if name in active_names:
+            raise RuntimeError(f"DNS name loop detected at {name}")
+
+        active_names = active_names | {name}
+        servers = list(ROOT_SERVERS)
+        seen_referrals = set()
+
+        while servers:
+            if len(path) >= self.MAX_QUERIES:
+                raise RuntimeError("maximum number of DNS queries exceeded")
+
+            next_servers = None
+            last_error = None
+
+            # A delegation normally supplies several equivalent servers.  A
+            # timeout, SERVFAIL, or malformed reply from one must not stop the
+            # walk, so try every candidate before giving up.
+            for server in servers:
+                if len(path) >= self.MAX_QUERIES:
+                    raise RuntimeError("maximum number of DNS queries exceeded")
+                path.append(server)
+                try:
+                    response = self._query(server, name)
+                except (OSError, ValueError) as exc:
+                    last_error = exc
+                    continue
+
+                rcode = response["flags"] & 0x000f
+                if rcode == 3:  # NXDOMAIN
+                    raise LookupError(f"{name} does not exist")
+                if rcode != 0:  # SERVFAIL, REFUSED, and other retryable replies
+                    last_error = RuntimeError(
+                        f"server {server} returned DNS rcode {rcode}")
+                    continue
+
+                answer = self._answer_from(response["answers"], name)
+                if answer is not None:
+                    kind, value = answer
+                    if kind == "A":
+                        return value
+                    # A CNAME changes the question.  Begin a fresh iterative
+                    # walk at a root server for the canonical name.
+                    return self._resolve_name(
+                        value, path, depth + 1, active_names)
+
+                ns_names = [
+                    rr[4] for rr in response["authority"] if rr[1] == 2
+                ]
+                if not ns_names:
+                    last_error = RuntimeError(
+                        f"server {server} returned neither an answer nor a referral")
+                    continue
+
+                # Glue is useful only when it belongs to one of the NS names
+                # in this referral.  Ignore unrelated additional A records.
+                glue = {ns: [] for ns in ns_names}
+                for owner, rtype, _rclass, _ttl, value in response["additional"]:
+                    if rtype == 1 and owner in glue:
+                        glue[owner].append(value)
+
+                candidates = []
+                for ns_name in ns_names:
+                    if glue[ns_name]:
+                        candidates.extend(glue[ns_name])
+                        continue
+
+                    # No glue: resolve the nameserver hostname through its own
+                    # root-to-authoritative walk, recording those queries in
+                    # the same path because they really went over the wire.
+                    try:
+                        ns_address = self._resolve_name(
+                            ns_name, path, depth + 1, active_names)
+                    except (LookupError, OSError, RuntimeError, ValueError) as exc:
+                        last_error = exc
+                        continue
+                    candidates.append(ns_address)
+
+                # Preserve DNS order while removing duplicate addresses.
+                candidates = list(dict.fromkeys(candidates))
+                if not candidates:
+                    continue
+
+                referral = (name, tuple(candidates))
+                if referral in seen_referrals:
+                    raise RuntimeError(f"delegation loop detected for {name}")
+                seen_referrals.add(referral)
+                next_servers = candidates
+                break
+
+            if next_servers is not None:
+                servers = next_servers
+                continue
+
+            detail = f": {last_error}" if last_error else ""
+            raise RuntimeError(f"all DNS server candidates failed for {name}{detail}")
+
+        raise RuntimeError(f"no DNS servers available for {name}")
+
+    @staticmethod
+    def _normalise_name(name):
+        name = name.strip().rstrip(".").lower()
+        if not name or len(name.encode("idna")) > 253:
+            raise ValueError("invalid DNS name")
+        return name
+
+    @staticmethod
+    def _answer_from(records, question):
+        """Return ("A", address) or ("CNAME", target) from an answer section."""
+        current = question
+        seen = set()
+        followed_cname = False
+        while current not in seen:
+            seen.add(current)
+            for owner, rtype, _rclass, _ttl, value in records:
+                if owner == current and rtype == 1:
+                    return "A", value
+            for owner, rtype, _rclass, _ttl, value in records:
+                if owner == current and rtype == 5:
+                    current = value
+                    followed_cname = True
+                    break
+            else:
+                if followed_cname:
+                    return "CNAME", current
+                return None
+
+        raise RuntimeError(f"CNAME loop detected at {current}")
+
+    def _query(self, server, name):
+        """Send one non-recursive A query, using TCP if UDP is truncated."""
+        query_id = random.SystemRandom().randrange(0x10000)
+        packet = self._make_query(query_id, name)
+
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
+            sock.settimeout(self.TIMEOUT)
+            sock.sendto(packet, (server, 53))
+            data, source = sock.recvfrom(65535)
+        if source[0] != server:
+            raise ValueError("DNS response came from an unexpected server")
+
+        response = self._parse_response(data, query_id)
+        if response["flags"] & 0x0200:  # TC: retry the same query over TCP
+            data = self._query_tcp(server, packet)
+            response = self._parse_response(data, query_id)
+        return response
+
+    def _query_tcp(self, server, packet):
+        with socket.create_connection((server, 53), self.TIMEOUT) as sock:
+            sock.settimeout(self.TIMEOUT)
+            sock.sendall(struct.pack("!H", len(packet)) + packet)
+            size = struct.unpack("!H", self._recv_exact(sock, 2))[0]
+            return self._recv_exact(sock, size)
+
+    @staticmethod
+    def _recv_exact(sock, size):
+        chunks = []
+        remaining = size
+        while remaining:
+            chunk = sock.recv(remaining)
+            if not chunk:
+                raise OSError("DNS TCP connection closed early")
+            chunks.append(chunk)
+            remaining -= len(chunk)
+        return b"".join(chunks)
+
+    @classmethod
+    def _make_query(cls, query_id, name):
+        # flags=0 means RD (recursion desired) is deliberately not set.
+        header = struct.pack("!HHHHHH", query_id, 0, 1, 0, 0, 0)
+        question = cls._encode_name(name) + struct.pack("!HH", 1, 1)
+        return header + question
+
+    @staticmethod
+    def _encode_name(name):
+        wire = bytearray()
+        for label in name.split("."):
+            encoded = label.encode("idna")
+            if not encoded or len(encoded) > 63:
+                raise ValueError("invalid DNS label")
+            wire.append(len(encoded))
+            wire.extend(encoded)
+        wire.append(0)
+        return bytes(wire)
+
+    @classmethod
+    def _read_name(cls, packet, offset):
+        labels = []
+        end = None
+        jumps = 0
+
+        while True:
+            if offset >= len(packet):
+                raise ValueError("truncated DNS name")
+            length = packet[offset]
+            if length & 0xc0 == 0xc0:
+                if offset + 1 >= len(packet):
+                    raise ValueError("truncated DNS compression pointer")
+                pointer = ((length & 0x3f) << 8) | packet[offset + 1]
+                if pointer >= len(packet):
+                    raise ValueError("invalid DNS compression pointer")
+                if end is None:
+                    end = offset + 2
+                offset = pointer
+                jumps += 1
+                if jumps > 30:
+                    raise ValueError("DNS compression pointer loop")
+                continue
+            if length & 0xc0:
+                raise ValueError("invalid DNS label length")
+
+            offset += 1
+            if length == 0:
+                break
+            if offset + length > len(packet):
+                raise ValueError("truncated DNS label")
+            labels.append(packet[offset:offset + length].decode("ascii").lower())
+            offset += length
+
+        return ".".join(labels), end if end is not None else offset
+
+    @classmethod
+    def _parse_response(cls, packet, expected_id):
+        if len(packet) < 12:
+            raise ValueError("truncated DNS header")
+        query_id, flags, qd, an, ns, ar = struct.unpack("!HHHHHH", packet[:12])
+        if query_id != expected_id or not (flags & 0x8000):
+            raise ValueError("invalid DNS response")
+
+        offset = 12
+        for _ in range(qd):
+            _name, offset = cls._read_name(packet, offset)
+            if offset + 4 > len(packet):
+                raise ValueError("truncated DNS question")
+            offset += 4
+
+        sections = []
+        for count in (an, ns, ar):
+            records = []
+            for _ in range(count):
+                owner, offset = cls._read_name(packet, offset)
+                if offset + 10 > len(packet):
+                    raise ValueError("truncated DNS resource record")
+                rtype, rclass, ttl, rdlength = struct.unpack(
+                    "!HHIH", packet[offset:offset + 10])
+                offset += 10
+                rdata_offset = offset
+                offset += rdlength
+                if offset > len(packet):
+                    raise ValueError("truncated DNS record data")
+
+                value = packet[rdata_offset:offset]
+                if rtype == 1 and rclass == 1 and rdlength == 4:
+                    value = socket.inet_ntoa(value)
+                elif rtype in (2, 5):  # NS or CNAME
+                    value, _unused = cls._read_name(packet, rdata_offset)
+                records.append((owner, rtype, rclass, ttl, value))
+            sections.append(records)
+
+        return {
+            "flags": flags,
+            "answers": sections[0],
+            "authority": sections[1],
+            "additional": sections[2],
+        }
 
 
 # ------------------------------------------------------------------- harness
