@@ -1,0 +1,1640 @@
+{
+  "www.adobe.com": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "23.76.153.115",
+              "23.76.153.121"
+            ],
+            "chain": [
+              "www.adobe.com",
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.adobe.com",
+                "to": "www.adobe.com.edgesuite.net"
+              },
+              {
+                "from": "www.adobe.com.edgesuite.net",
+                "to": "a1319.dscr.akamai.net"
+              }
+            ],
+            "error": null,
+            "final_name": "a1319.dscr.akamai.net"
+          },
+          "quad9": {
+            "addresses": [
+              "23.219.78.45",
+              "23.219.78.49"
+            ],
+            "chain": [
+              "www.adobe.com",
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.adobe.com",
+                "to": "www.adobe.com.edgesuite.net"
+              },
+              {
+                "from": "www.adobe.com.edgesuite.net",
+                "to": "a1319.dscr.akamai.net"
+              }
+            ],
+            "error": null,
+            "final_name": "a1319.dscr.akamai.net"
+          },
+          "system": {
+            "addresses": [
+              "23.76.153.115",
+              "23.76.153.121"
+            ],
+            "chain": [
+              "www.adobe.com",
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.adobe.com",
+                "to": "www.adobe.com.edgesuite.net"
+              },
+              {
+                "from": "www.adobe.com.edgesuite.net",
+                "to": "a1319.dscr.akamai.net"
+              }
+            ],
+            "error": null,
+            "final_name": "a1319.dscr.akamai.net"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "23.76.153.115",
+              "23.76.153.121"
+            ],
+            "chain": [
+              "www.adobe.com",
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.adobe.com",
+                "to": "www.adobe.com.edgesuite.net"
+              },
+              {
+                "from": "www.adobe.com.edgesuite.net",
+                "to": "a1319.dscr.akamai.net"
+              }
+            ],
+            "error": null,
+            "final_name": "a1319.dscr.akamai.net"
+          },
+          "quad9": {
+            "addresses": [
+              "23.44.175.16",
+              "23.44.175.17"
+            ],
+            "chain": [
+              "www.adobe.com",
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.adobe.com",
+                "to": "www.adobe.com.edgesuite.net"
+              },
+              {
+                "from": "www.adobe.com.edgesuite.net",
+                "to": "a1319.dscr.akamai.net"
+              }
+            ],
+            "error": null,
+            "final_name": "a1319.dscr.akamai.net"
+          },
+          "system": {
+            "addresses": [
+              "23.35.218.147",
+              "23.35.218.154",
+              "23.35.218.156"
+            ],
+            "chain": [
+              "www.adobe.com",
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net",
+              "a1319.dscr.akamai.net.0.1.cn.akamaitech.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.adobe.com",
+                "to": "www.adobe.com.edgesuite.net"
+              },
+              {
+                "from": "www.adobe.com.edgesuite.net",
+                "to": "a1319.dscr.akamai.net"
+              },
+              {
+                "from": "a1319.dscr.akamai.net",
+                "to": "a1319.dscr.akamai.net.0.1.cn.akamaitech.net"
+              }
+            ],
+            "error": null,
+            "final_name": "a1319.dscr.akamai.net.0.1.cn.akamaitech.net"
+          }
+        }
+      }
+    }
+  },
+  "www.apple.com": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "23.49.205.28"
+            ],
+            "chain": [
+              "www.apple.com",
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.apple.com",
+                "to": "www-apple-com.v.aaplimg.com"
+              },
+              {
+                "from": "www-apple-com.v.aaplimg.com",
+                "to": "www.apple.com.edgekey.net"
+              },
+              {
+                "from": "www.apple.com.edgekey.net",
+                "to": "e6858.dsce9.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e6858.dsce9.akamaiedge.net"
+          },
+          "quad9": {
+            "addresses": [
+              "23.217.180.246"
+            ],
+            "chain": [
+              "www.apple.com",
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.apple.com",
+                "to": "www-apple-com.v.aaplimg.com"
+              },
+              {
+                "from": "www-apple-com.v.aaplimg.com",
+                "to": "www.apple.com.edgekey.net"
+              },
+              {
+                "from": "www.apple.com.edgekey.net",
+                "to": "e6858.dsce9.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e6858.dsce9.akamaiedge.net"
+          },
+          "system": {
+            "addresses": [
+              "23.49.205.28"
+            ],
+            "chain": [
+              "www.apple.com",
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.apple.com",
+                "to": "www-apple-com.v.aaplimg.com"
+              },
+              {
+                "from": "www-apple-com.v.aaplimg.com",
+                "to": "www.apple.com.edgekey.net"
+              },
+              {
+                "from": "www.apple.com.edgekey.net",
+                "to": "e6858.dsce9.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e6858.dsce9.akamaiedge.net"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "23.49.205.28"
+            ],
+            "chain": [
+              "www.apple.com",
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.apple.com",
+                "to": "www-apple-com.v.aaplimg.com"
+              },
+              {
+                "from": "www-apple-com.v.aaplimg.com",
+                "to": "www.apple.com.edgekey.net"
+              },
+              {
+                "from": "www.apple.com.edgekey.net",
+                "to": "e6858.dsce9.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e6858.dsce9.akamaiedge.net"
+          },
+          "quad9": {
+            "addresses": [
+              "23.217.180.246"
+            ],
+            "chain": [
+              "www.apple.com",
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.apple.com",
+                "to": "www-apple-com.v.aaplimg.com"
+              },
+              {
+                "from": "www-apple-com.v.aaplimg.com",
+                "to": "www.apple.com.edgekey.net"
+              },
+              {
+                "from": "www.apple.com.edgekey.net",
+                "to": "e6858.dsce9.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e6858.dsce9.akamaiedge.net"
+          },
+          "system": {
+            "addresses": [
+              "23.49.205.28"
+            ],
+            "chain": [
+              "www.apple.com",
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.apple.com",
+                "to": "www-apple-com.v.aaplimg.com"
+              },
+              {
+                "from": "www-apple-com.v.aaplimg.com",
+                "to": "www.apple.com.edgekey.net"
+              },
+              {
+                "from": "www.apple.com.edgekey.net",
+                "to": "e6858.dsce9.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e6858.dsce9.akamaiedge.net"
+          }
+        }
+      }
+    }
+  },
+  "www.bbc.co.uk": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "151.101.0.81",
+              "151.101.128.81",
+              "151.101.192.81",
+              "151.101.64.81"
+            ],
+            "chain": [
+              "www.bbc.co.uk",
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.bbc.co.uk",
+                "to": "www.bbc.co.uk.pri.bbc.co.uk"
+              },
+              {
+                "from": "www.bbc.co.uk.pri.bbc.co.uk",
+                "to": "bbc.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "bbc.map.fastly.net"
+          },
+          "quad9": {
+            "addresses": [
+              "151.101.0.81",
+              "151.101.128.81",
+              "151.101.192.81",
+              "151.101.64.81"
+            ],
+            "chain": [
+              "www.bbc.co.uk",
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.bbc.co.uk",
+                "to": "www.bbc.co.uk.pri.bbc.co.uk"
+              },
+              {
+                "from": "www.bbc.co.uk.pri.bbc.co.uk",
+                "to": "bbc.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "bbc.map.fastly.net"
+          },
+          "system": {
+            "addresses": [
+              "146.75.48.81"
+            ],
+            "chain": [
+              "www.bbc.co.uk",
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.bbc.co.uk",
+                "to": "www.bbc.co.uk.pri.bbc.co.uk"
+              },
+              {
+                "from": "www.bbc.co.uk.pri.bbc.co.uk",
+                "to": "bbc.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "bbc.map.fastly.net"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "151.101.0.81",
+              "151.101.128.81",
+              "151.101.192.81",
+              "151.101.64.81"
+            ],
+            "chain": [
+              "www.bbc.co.uk",
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.bbc.co.uk",
+                "to": "www.bbc.co.uk.pri.bbc.co.uk"
+              },
+              {
+                "from": "www.bbc.co.uk.pri.bbc.co.uk",
+                "to": "bbc.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "bbc.map.fastly.net"
+          },
+          "quad9": {
+            "addresses": [
+              "151.101.0.81",
+              "151.101.128.81",
+              "151.101.192.81",
+              "151.101.64.81"
+            ],
+            "chain": [
+              "www.bbc.co.uk",
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.bbc.co.uk",
+                "to": "www.bbc.co.uk.pri.bbc.co.uk"
+              },
+              {
+                "from": "www.bbc.co.uk.pri.bbc.co.uk",
+                "to": "bbc.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "bbc.map.fastly.net"
+          },
+          "system": {
+            "addresses": [
+              "146.75.48.81"
+            ],
+            "chain": [
+              "www.bbc.co.uk",
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.bbc.co.uk",
+                "to": "www.bbc.co.uk.pri.bbc.co.uk"
+              },
+              {
+                "from": "www.bbc.co.uk.pri.bbc.co.uk",
+                "to": "bbc.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "bbc.map.fastly.net"
+          }
+        }
+      }
+    }
+  },
+  "www.cnn.com": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "151.101.131.5",
+              "151.101.195.5",
+              "151.101.3.5",
+              "151.101.67.5"
+            ],
+            "chain": [
+              "www.cnn.com",
+              "cnn-tls.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.cnn.com",
+                "to": "cnn-tls.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "cnn-tls.map.fastly.net"
+          },
+          "quad9": {
+            "addresses": [
+              "151.101.131.5",
+              "151.101.195.5",
+              "151.101.3.5",
+              "151.101.67.5"
+            ],
+            "chain": [
+              "www.cnn.com",
+              "cnn-tls.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.cnn.com",
+                "to": "cnn-tls.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "cnn-tls.map.fastly.net"
+          },
+          "system": {
+            "addresses": [
+              "146.75.51.5"
+            ],
+            "chain": [
+              "www.cnn.com",
+              "cnn-tls.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.cnn.com",
+                "to": "cnn-tls.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "cnn-tls.map.fastly.net"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "151.101.131.5",
+              "151.101.195.5",
+              "151.101.3.5",
+              "151.101.67.5"
+            ],
+            "chain": [
+              "www.cnn.com",
+              "cnn-tls.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.cnn.com",
+                "to": "cnn-tls.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "cnn-tls.map.fastly.net"
+          },
+          "quad9": {
+            "addresses": [
+              "151.101.131.5",
+              "151.101.195.5",
+              "151.101.3.5",
+              "151.101.67.5"
+            ],
+            "chain": [
+              "www.cnn.com",
+              "cnn-tls.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.cnn.com",
+                "to": "cnn-tls.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "cnn-tls.map.fastly.net"
+          },
+          "system": {
+            "addresses": [
+              "146.75.51.5"
+            ],
+            "chain": [
+              "www.cnn.com",
+              "cnn-tls.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.cnn.com",
+                "to": "cnn-tls.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "cnn-tls.map.fastly.net"
+          }
+        }
+      }
+    }
+  },
+  "www.github.com": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "chain": [
+              "www.github.com",
+              "github.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.github.com",
+                "to": "github.com"
+              }
+            ],
+            "error": null,
+            "final_name": "github.com"
+          },
+          "quad9": {
+            "addresses": [
+              "20.27.177.113"
+            ],
+            "chain": [
+              "www.github.com",
+              "github.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.github.com",
+                "to": "github.com"
+              }
+            ],
+            "error": null,
+            "final_name": "github.com"
+          },
+          "system": {
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "chain": [
+              "www.github.com",
+              "github.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.github.com",
+                "to": "github.com"
+              }
+            ],
+            "error": null,
+            "final_name": "github.com"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "chain": [
+              "www.github.com",
+              "github.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.github.com",
+                "to": "github.com"
+              }
+            ],
+            "error": null,
+            "final_name": "github.com"
+          },
+          "quad9": {
+            "addresses": [
+              "20.27.177.113"
+            ],
+            "chain": [
+              "www.github.com",
+              "github.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.github.com",
+                "to": "github.com"
+              }
+            ],
+            "error": null,
+            "final_name": "github.com"
+          },
+          "system": {
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "chain": [
+              "www.github.com",
+              "github.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.github.com",
+                "to": "github.com"
+              }
+            ],
+            "error": null,
+            "final_name": "github.com"
+          }
+        }
+      }
+    }
+  },
+  "www.korea.ac.kr": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "chain": [
+              "www.korea.ac.kr"
+            ],
+            "cname_hops": [],
+            "error": null,
+            "final_name": "www.korea.ac.kr"
+          },
+          "quad9": {
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "chain": [
+              "www.korea.ac.kr"
+            ],
+            "cname_hops": [],
+            "error": null,
+            "final_name": "www.korea.ac.kr"
+          },
+          "system": {
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "chain": [
+              "www.korea.ac.kr"
+            ],
+            "cname_hops": [],
+            "error": null,
+            "final_name": "www.korea.ac.kr"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "chain": [
+              "www.korea.ac.kr"
+            ],
+            "cname_hops": [],
+            "error": null,
+            "final_name": "www.korea.ac.kr"
+          },
+          "quad9": {
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "chain": [
+              "www.korea.ac.kr"
+            ],
+            "cname_hops": [],
+            "error": null,
+            "final_name": "www.korea.ac.kr"
+          },
+          "system": {
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "chain": [
+              "www.korea.ac.kr"
+            ],
+            "cname_hops": [],
+            "error": null,
+            "final_name": "www.korea.ac.kr"
+          }
+        }
+      }
+    }
+  },
+  "www.microsoft.com": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "23.49.206.40"
+            ],
+            "chain": [
+              "www.microsoft.com",
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.microsoft.com",
+                "to": "www.microsoft.com-c-3.edgekey.net"
+              },
+              {
+                "from": "www.microsoft.com-c-3.edgekey.net",
+                "to": "e13678.dscb.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e13678.dscb.akamaiedge.net"
+          },
+          "quad9": {
+            "addresses": [
+              "23.63.226.92"
+            ],
+            "chain": [
+              "www.microsoft.com",
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.microsoft.com",
+                "to": "www.microsoft.com-c-3.edgekey.net"
+              },
+              {
+                "from": "www.microsoft.com-c-3.edgekey.net",
+                "to": "e13678.dscb.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e13678.dscb.akamaiedge.net"
+          },
+          "system": {
+            "addresses": [
+              "23.49.206.40"
+            ],
+            "chain": [
+              "www.microsoft.com",
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.microsoft.com",
+                "to": "www.microsoft.com-c-3.edgekey.net"
+              },
+              {
+                "from": "www.microsoft.com-c-3.edgekey.net",
+                "to": "e13678.dscb.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e13678.dscb.akamaiedge.net"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "23.49.206.40"
+            ],
+            "chain": [
+              "www.microsoft.com",
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.microsoft.com",
+                "to": "www.microsoft.com-c-3.edgekey.net"
+              },
+              {
+                "from": "www.microsoft.com-c-3.edgekey.net",
+                "to": "e13678.dscb.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e13678.dscb.akamaiedge.net"
+          },
+          "quad9": {
+            "addresses": [
+              "23.0.194.92"
+            ],
+            "chain": [
+              "www.microsoft.com",
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.microsoft.com",
+                "to": "www.microsoft.com-c-3.edgekey.net"
+              },
+              {
+                "from": "www.microsoft.com-c-3.edgekey.net",
+                "to": "e13678.dscb.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e13678.dscb.akamaiedge.net"
+          },
+          "system": {
+            "addresses": [
+              "104.94.218.45"
+            ],
+            "chain": [
+              "www.microsoft.com",
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.microsoft.com",
+                "to": "www.microsoft.com-c-3.edgekey.net"
+              },
+              {
+                "from": "www.microsoft.com-c-3.edgekey.net",
+                "to": "e13678.dscb.akamaiedge.net"
+              }
+            ],
+            "error": null,
+            "final_name": "e13678.dscb.akamaiedge.net"
+          }
+        }
+      }
+    }
+  },
+  "www.netflix.com": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "chain": [
+              "www.netflix.com",
+              "www.prod.ftl.netflix.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.netflix.com",
+                "to": "www.prod.ftl.netflix.com"
+              }
+            ],
+            "error": null,
+            "final_name": "www.prod.ftl.netflix.com"
+          },
+          "quad9": {
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "chain": [
+              "www.netflix.com",
+              "www.prod.ftl.netflix.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.netflix.com",
+                "to": "www.prod.ftl.netflix.com"
+              }
+            ],
+            "error": null,
+            "final_name": "www.prod.ftl.netflix.com"
+          },
+          "system": {
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "chain": [
+              "www.netflix.com",
+              "www.prod.ftl.netflix.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.netflix.com",
+                "to": "www.prod.ftl.netflix.com"
+              }
+            ],
+            "error": null,
+            "final_name": "www.prod.ftl.netflix.com"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "chain": [
+              "www.netflix.com",
+              "www.prod.ftl.netflix.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.netflix.com",
+                "to": "www.prod.ftl.netflix.com"
+              }
+            ],
+            "error": null,
+            "final_name": "www.prod.ftl.netflix.com"
+          },
+          "quad9": {
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "chain": [
+              "www.netflix.com",
+              "www.prod.ftl.netflix.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.netflix.com",
+                "to": "www.prod.ftl.netflix.com"
+              }
+            ],
+            "error": null,
+            "final_name": "www.prod.ftl.netflix.com"
+          },
+          "system": {
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "chain": [
+              "www.netflix.com",
+              "www.prod.ftl.netflix.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.netflix.com",
+                "to": "www.prod.ftl.netflix.com"
+              }
+            ],
+            "error": null,
+            "final_name": "www.prod.ftl.netflix.com"
+          }
+        }
+      }
+    }
+  },
+  "www.nytimes.com": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "151.101.1.164",
+              "151.101.129.164",
+              "151.101.193.164",
+              "151.101.65.164"
+            ],
+            "chain": [
+              "www.nytimes.com",
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.nytimes.com",
+                "to": "www.prd.map.nytimes.com"
+              },
+              {
+                "from": "www.prd.map.nytimes.com",
+                "to": "www.prd.map.nytimes.xovr.nyt.net"
+              },
+              {
+                "from": "www.prd.map.nytimes.xovr.nyt.net",
+                "to": "nytimes.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "nytimes.map.fastly.net"
+          },
+          "quad9": {
+            "addresses": [
+              "151.101.1.164",
+              "151.101.129.164",
+              "151.101.193.164",
+              "151.101.65.164"
+            ],
+            "chain": [
+              "www.nytimes.com",
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.nytimes.com",
+                "to": "www.prd.map.nytimes.com"
+              },
+              {
+                "from": "www.prd.map.nytimes.com",
+                "to": "www.prd.map.nytimes.xovr.nyt.net"
+              },
+              {
+                "from": "www.prd.map.nytimes.xovr.nyt.net",
+                "to": "nytimes.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "nytimes.map.fastly.net"
+          },
+          "system": {
+            "addresses": [
+              "146.75.49.164"
+            ],
+            "chain": [
+              "www.nytimes.com",
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.nytimes.com",
+                "to": "www.prd.map.nytimes.com"
+              },
+              {
+                "from": "www.prd.map.nytimes.com",
+                "to": "www.prd.map.nytimes.xovr.nyt.net"
+              },
+              {
+                "from": "www.prd.map.nytimes.xovr.nyt.net",
+                "to": "nytimes.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "nytimes.map.fastly.net"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "151.101.1.164",
+              "151.101.129.164",
+              "151.101.193.164",
+              "151.101.65.164"
+            ],
+            "chain": [
+              "www.nytimes.com",
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.nytimes.com",
+                "to": "www.prd.map.nytimes.com"
+              },
+              {
+                "from": "www.prd.map.nytimes.com",
+                "to": "www.prd.map.nytimes.xovr.nyt.net"
+              },
+              {
+                "from": "www.prd.map.nytimes.xovr.nyt.net",
+                "to": "nytimes.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "nytimes.map.fastly.net"
+          },
+          "quad9": {
+            "addresses": [
+              "151.101.1.164",
+              "151.101.129.164",
+              "151.101.193.164",
+              "151.101.65.164"
+            ],
+            "chain": [
+              "www.nytimes.com",
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.nytimes.com",
+                "to": "www.prd.map.nytimes.com"
+              },
+              {
+                "from": "www.prd.map.nytimes.com",
+                "to": "www.prd.map.nytimes.xovr.nyt.net"
+              },
+              {
+                "from": "www.prd.map.nytimes.xovr.nyt.net",
+                "to": "nytimes.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "nytimes.map.fastly.net"
+          },
+          "system": {
+            "addresses": [
+              "146.75.49.164"
+            ],
+            "chain": [
+              "www.nytimes.com",
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.nytimes.com",
+                "to": "www.prd.map.nytimes.com"
+              },
+              {
+                "from": "www.prd.map.nytimes.com",
+                "to": "www.prd.map.nytimes.xovr.nyt.net"
+              },
+              {
+                "from": "www.prd.map.nytimes.xovr.nyt.net",
+                "to": "nytimes.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "nytimes.map.fastly.net"
+          }
+        }
+      }
+    }
+  },
+  "www.spotify.com": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "151.101.131.42",
+              "151.101.195.42",
+              "151.101.3.42",
+              "151.101.67.42"
+            ],
+            "chain": [
+              "www.spotify.com",
+              "atc.spotify.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.spotify.com",
+                "to": "atc.spotify.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "atc.spotify.map.fastly.net"
+          },
+          "quad9": {
+            "addresses": [
+              "151.101.131.42",
+              "151.101.195.42",
+              "151.101.3.42",
+              "151.101.67.42"
+            ],
+            "chain": [
+              "www.spotify.com",
+              "atc.spotify.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.spotify.com",
+                "to": "atc.spotify.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "atc.spotify.map.fastly.net"
+          },
+          "system": {
+            "addresses": [
+              "146.75.51.42"
+            ],
+            "chain": [
+              "www.spotify.com",
+              "atc.spotify.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.spotify.com",
+                "to": "atc.spotify.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "atc.spotify.map.fastly.net"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "151.101.131.42",
+              "151.101.195.42",
+              "151.101.3.42",
+              "151.101.67.42"
+            ],
+            "chain": [
+              "www.spotify.com",
+              "atc.spotify.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.spotify.com",
+                "to": "atc.spotify.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "atc.spotify.map.fastly.net"
+          },
+          "quad9": {
+            "addresses": [
+              "151.101.131.42",
+              "151.101.195.42",
+              "151.101.3.42",
+              "151.101.67.42"
+            ],
+            "chain": [
+              "www.spotify.com",
+              "atc.spotify.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.spotify.com",
+                "to": "atc.spotify.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "atc.spotify.map.fastly.net"
+          },
+          "system": {
+            "addresses": [
+              "146.75.51.42"
+            ],
+            "chain": [
+              "www.spotify.com",
+              "atc.spotify.map.fastly.net"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.spotify.com",
+                "to": "atc.spotify.map.fastly.net"
+              }
+            ],
+            "error": null,
+            "final_name": "atc.spotify.map.fastly.net"
+          }
+        }
+      }
+    }
+  },
+  "www.stanford.edu": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "chain": [
+              "www.stanford.edu",
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.stanford.edu",
+                "to": "stanford.netlifyglobalcdn.com"
+              }
+            ],
+            "error": null,
+            "final_name": "stanford.netlifyglobalcdn.com"
+          },
+          "quad9": {
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "chain": [
+              "www.stanford.edu",
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.stanford.edu",
+                "to": "stanford.netlifyglobalcdn.com"
+              }
+            ],
+            "error": null,
+            "final_name": "stanford.netlifyglobalcdn.com"
+          },
+          "system": {
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "chain": [
+              "www.stanford.edu",
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.stanford.edu",
+                "to": "stanford.netlifyglobalcdn.com"
+              }
+            ],
+            "error": null,
+            "final_name": "stanford.netlifyglobalcdn.com"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "chain": [
+              "www.stanford.edu",
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.stanford.edu",
+                "to": "stanford.netlifyglobalcdn.com"
+              }
+            ],
+            "error": null,
+            "final_name": "stanford.netlifyglobalcdn.com"
+          },
+          "quad9": {
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "chain": [
+              "www.stanford.edu",
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.stanford.edu",
+                "to": "stanford.netlifyglobalcdn.com"
+              }
+            ],
+            "error": null,
+            "final_name": "stanford.netlifyglobalcdn.com"
+          },
+          "system": {
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "chain": [
+              "www.stanford.edu",
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.stanford.edu",
+                "to": "stanford.netlifyglobalcdn.com"
+              }
+            ],
+            "error": null,
+            "final_name": "stanford.netlifyglobalcdn.com"
+          }
+        }
+      }
+    }
+  },
+  "www.wikipedia.org": {
+    "networks": {
+      "campus-wifi": {
+        "collected_at": "2026-10-06T10:01:10+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "chain": [
+              "www.wikipedia.org",
+              "dyna.wikimedia.org"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.wikipedia.org",
+                "to": "dyna.wikimedia.org"
+              }
+            ],
+            "error": null,
+            "final_name": "dyna.wikimedia.org"
+          },
+          "quad9": {
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "chain": [
+              "www.wikipedia.org",
+              "dyna.wikimedia.org"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.wikipedia.org",
+                "to": "dyna.wikimedia.org"
+              }
+            ],
+            "error": null,
+            "final_name": "dyna.wikimedia.org"
+          },
+          "system": {
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "chain": [
+              "www.wikipedia.org",
+              "dyna.wikimedia.org"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.wikipedia.org",
+                "to": "dyna.wikimedia.org"
+              }
+            ],
+            "error": null,
+            "final_name": "dyna.wikimedia.org"
+          }
+        }
+      },
+      "phone-hotspot": {
+        "collected_at": "2026-10-06T10:03:42+09:00",
+        "resolvers": {
+          "google": {
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "chain": [
+              "www.wikipedia.org",
+              "dyna.wikimedia.org"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.wikipedia.org",
+                "to": "dyna.wikimedia.org"
+              }
+            ],
+            "error": null,
+            "final_name": "dyna.wikimedia.org"
+          },
+          "quad9": {
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "chain": [
+              "www.wikipedia.org",
+              "dyna.wikimedia.org"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.wikipedia.org",
+                "to": "dyna.wikimedia.org"
+              }
+            ],
+            "error": null,
+            "final_name": "dyna.wikimedia.org"
+          },
+          "system": {
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "chain": [
+              "www.wikipedia.org",
+              "dyna.wikimedia.org"
+            ],
+            "cname_hops": [
+              {
+                "from": "www.wikipedia.org",
+                "to": "dyna.wikimedia.org"
+              }
+            ],
+            "error": null,
+            "final_name": "dyna.wikimedia.org"
+          }
+        }
+      }
+    }
+  }
+}
