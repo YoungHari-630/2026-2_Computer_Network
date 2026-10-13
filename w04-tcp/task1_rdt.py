@@ -68,25 +68,62 @@ class Sender:
     """
 
     def __init__(self, data_channel, ack_channel, data):
-        raise NotImplementedError("write your sender")
+        self.data_channel = data_channel
+        self.ack_channel = ack_channel
+        self.packets = [
+            (seq, data[start:start + PAYLOAD])
+            for seq, start in enumerate(range(0, len(data), PAYLOAD))
+        ]
+        self.next_seq = 0
 
     def step(self):
         """Do one unit of work. Return False when you believe you are done."""
-        raise NotImplementedError
+        # ACKs can be lost, duplicated, or delayed.  Only the ACK for the
+        # packet currently outstanding is allowed to advance the sender.
+        ack = self.ack_channel.receive()
+        if ack is not None and ack[0] == "ACK" and ack[1] == self.next_seq:
+            self.next_seq += 1
+
+        if self.next_seq >= len(self.packets):
+            return False
+
+        # A step is our simple timeout.  Re-sending on every step is a
+        # deliberately small stop-and-wait protocol: eventually one copy and
+        # its ACK both survive the unreliable channels.
+        seq, payload = self.packets[self.next_seq]
+        self.data_channel.send(("DATA", seq, payload))
+        return True
 
 
 class Receiver:
     """Your receiver. Hands back the reassembled bytes via `.data()`."""
 
     def __init__(self, data_channel, ack_channel):
-        raise NotImplementedError("write your receiver")
+        self.data_channel = data_channel
+        self.ack_channel = ack_channel
+        self.expected_seq = 0
+        self.received = bytearray()
 
     def step(self):
-        raise NotImplementedError
+        packet = self.data_channel.receive()
+        if packet is None:
+            return
+
+        kind, seq, payload = packet
+        if kind != "DATA":
+            return
+
+        # Stop-and-wait means a future packet cannot legitimately arrive.
+        # An old duplicate may arrive after its ACK, so append only the exact
+        # next sequence number while still ACKing every valid data packet.
+        if seq == self.expected_seq:
+            self.received.extend(payload)
+            self.expected_seq += 1
+        self.ack_channel.send(("ACK", seq))
 
     def data(self):
         """The bytes reassembled so far."""
-        raise NotImplementedError
+        return bytes(self.received)
 
 
 # ------------------------------------------------------------------- harness

@@ -1,0 +1,15 @@
+## Task 1
+- I chose stop-and-wait because keeping only one packet outstanding makes delayed duplicate data and duplicate ACKs safe to reject by sequence number; the receiver appends only its next expected sequence.<br>**한국어:** 한 번에 패킷 하나만 보내고 번호가 맞는 데이터만 이어 붙여서 지연된 중복 데이터와 ACK를 안전하게 처리했다.
+- For 2,000 bytes, the seed-246 run sent 381 data-channel packets versus the 250-packet minimum, so reliability cost 1.52×; loss caused retransmissions, while delayed duplication was the subtle correctness case.<br>**한국어:** 최소 250개 대신 381개를 보내 신뢰성 비용은 1.52배였고, 손실은 재전송을 만들며 지연된 중복 패킷 처리가 가장 까다로웠다.
+
+## Task 2
+- I used the official Path-B trace: packets 1/2/3 are SYN/SYN-ACK/ACK, with raw ISNs 4,236,649,187 and 1,068,969,752. Both endpoints advertised MSS 1460 and SACK, with client/server window scales ×64/×128; randomized ISNs distinguish new connections from delayed old segments and are harder to guess.<br>**한국어:** 공식 trace의 1·2·3번이 3-way handshake이며, 양쪽은 MSS 1460과 SACK을 사용하고 임의 ISN으로 이전 연결의 지연 패킷과 새 연결을 구별한다.
+- The server's first post-handshake window was 249 × 128 = 31,872 bytes and later was 173,824 bytes when observed bytes in flight peaked at 75,296. Because the sender stayed below the advertised window, receiver flow control was not the limit; congestion control, RTT, and path capacity were.<br>**한국어:** 실제 전송 중인 75,296바이트가 당시 수신 윈도 173,824바이트보다 작았으므로 수신 버퍼가 병목은 아니었다.
+- Dormitory Wi-Fi measured 71.27 Mbps median (61.41–73.67, 17% spread) with a 29.9 ms median handshake; the phone hotspot measured 26.13 Mbps (23.13–28.42, 20% spread) with 32.6 ms. The hotspot's radio contention, scheduling, and backhaul explain most of the throughput gap and run-to-run spread; its longer RTT also slows the ACK clock and congestion-window growth, reducing throughput for a given window. The Path-B capture is the authors' private client 192.168.86.68 uploading Alice data to gaia.cs.umass.edu, as shown by the endpoints and payload.<br>**한국어:** 기숙사 Wi-Fi가 71.27 Mbps, 핫스팟이 26.13 Mbps였으며, 핫스팟의 무선 경쟁과 백홀 용량이 주된 차이이고 더 긴 RTT도 ACK와 윈도 증가를 늦춘다.
+
+> Trace source: J.F. Kurose and K.W. Ross, *Computer Networking: A Top-Down Approach*, 9th ed., Wireshark lab trace files, copyright 1996–2025.
+
+## Task 3
+- The fixed-window baseline has slightly higher goodput, but its 37.4% loss, 2,340 retransmissions, and 8.8-packet average queue waste capacity and impose delay and loss on every competing flow.<br>**한국어:** baseline은 처리량만 조금 높을 뿐 손실·재전송·큐 지연이 커서 다른 흐름까지 방해하는 최악의 송신자다.
+- My window converges to 24 packets: about the 20-packet bandwidth-delay product plus four queued packets; it achieved 977.8 packets/1,000 slots (99% of baseline) with 0.0% loss and a 3.9-packet average queue.<br>**한국어:** 윈도를 BDP 20에 큐 4개를 더한 24로 수렴시켜 baseline의 99% 처리량을 손실 없이 달성했다.
+- In a 32-packet-cap trial, changing backoff from 0.5 to 0.8 raised goodput from 857.25 to 977.75 packets/1,000 slots, but average queue rose from 3.24 to 5.82; the submitted 24-packet cap avoids that trade-off by preventing loss.<br>**한국어:** 완만한 backoff는 처리량을 높였지만 큐를 5.82까지 키웠고, 최종 24 제한은 애초에 손실을 막아 이 비용을 피했다.

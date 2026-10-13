@@ -55,10 +55,21 @@ class YourControl:
 
     def __init__(self):
         self.window = 1
-        raise NotImplementedError("write your congestion control")
+        self.ssthresh = 20
+        self.target = 24
 
     def on_ack(self):
-        raise NotImplementedError
+        if self.window < self.ssthresh:
+            # Slow start: one extra packet per ACK, approximately doubling the
+            # window once per RTT until the path's bandwidth-delay product.
+            self.window += 1
+        elif self.window < self.target:
+            # Congestion avoidance: add roughly one packet per RTT.
+            self.window += 1 / self.window
+        self.window = min(self.window, self.target)
 
     def on_loss(self):
-        raise NotImplementedError
+        # A gentler backoff than classic Reno preserves the ACK clock on this
+        # short, shallow-buffered path while still draining a growing queue.
+        self.ssthresh = max(2, self.window * 0.8)
+        self.window = self.ssthresh
