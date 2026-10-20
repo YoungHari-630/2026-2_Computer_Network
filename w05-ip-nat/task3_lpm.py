@@ -55,10 +55,24 @@ class YourTable:
     """
 
     def __init__(self):
-        raise NotImplementedError("write your table")
+        # One hash map per prefix length: O(routes) entries, with at most
+        # 33 constant-size maps. Duplicate prefixes replace their next hop.
+        self.by_length = [dict() for _ in range(33)]
+        self.lengths = []
 
     def add(self, network, prefix_len, next_hop):
-        raise NotImplementedError
+        if not 0 <= prefix_len <= 32:
+            raise ValueError("prefix_len must be between 0 and 32")
+        mask = (0xFFFFFFFF << (32 - prefix_len)) & 0xFFFFFFFF
+        if not self.by_length[prefix_len]:
+            self.lengths.append(prefix_len)
+            self.lengths.sort(reverse=True)
+        self.by_length[prefix_len][network & mask] = next_hop
 
     def lookup(self, address):
-        raise NotImplementedError
+        for prefix_len in self.lengths:
+            mask = (0xFFFFFFFF << (32 - prefix_len)) & 0xFFFFFFFF
+            hop = self.by_length[prefix_len].get(address & mask)
+            if hop is not None:
+                return hop
+        return None
