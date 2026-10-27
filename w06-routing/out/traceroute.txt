@@ -40,3 +40,28 @@ Trace complete.
  12    18 ms    41 ms    10 ms  141.101.82.17
  13     9 ms    14 ms     8 ms  1.1.1.1
 Trace complete.
+===== Direct Stanford apex: stanford.edu [171.67.215.200] =====
+Same dorm-network connection; command: tracert -d -h 20 -w 350 stanford.edu
+  1     2 ms     1 ms     1 ms  192.168.0.1
+  2     6 ms     3 ms     1 ms  39.127.66.1
+  3     5 ms     1 ms     3 ms  180.67.119.249
+  4    17 ms     3 ms     2 ms  180.67.119.241
+  5     8 ms     2 ms     8 ms  10.103.1.122
+  6    28 ms    10 ms    11 ms  10.222.25.130
+  7    19 ms     5 ms     9 ms  10.222.11.173
+  8     *        *        *     Request timed out.
+  9    89 ms    68 ms    69 ms  36.255.56.8 (as6939.equinix-hong-kong.core2.hkg2.he.net)
+ 10     *        *        *     Request timed out.
+ 11     *        *        *     Request timed out.
+ 12   195 ms   201 ms     *     184.105.64.130 (be2.core1.tyo1.he.net)
+ 13   194 ms   202 ms     *     184.104.194.37 (100ge0-0-0-30.core2.sjc2.he.net)
+ 14   197 ms   201 ms     *     184.105.65.113 (be5.core1.sjc1.he.net)
+ 15   202 ms   195 ms     *     72.52.92.133 (be11.core1.pao1.he.net)
+ 16   194 ms   197 ms     *     184.105.177.238 (stanford-university.e0-62.core2.pao1.he.net)
+ 17     *        *        *     Request timed out.
+ 18     *        *        *     Request timed out.
+ 19   193 ms   193 ms     *     171.67.215.200 (campus-east-rtr-vl1118.SUNet)
+ 20   193 ms   189 ms     *     171.67.215.200
+Trace complete.
+
+Reverse-DNS names were looked up for hops 9 and 12-16 after the numeric trace.
