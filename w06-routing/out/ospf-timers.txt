@@ -1,0 +1,93 @@
+Active OSPF interface timers
+Captured: 2026-10-27 13:35:52 +09:00
+Timer lines are FRR output; the lab config relies on OSPF defaults.
+===== r1 =====
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+eth0 is up
+  ifindex 2, MTU 1500 bytes, BW 10000 Mbit <UP,BROADCAST,RUNNING,MULTICAST>
+  Internet Address 172.21.0.2/16, Broadcast 172.21.255.255, Area 0.0.0.0
+  MTU mismatch detection: enabled
+  Router ID 1.1.1.1, Network Type BROADCAST, Cost: 10
+  Transmit Delay is 1 sec, State DR, Priority 1
+  Designated Router (ID) 1.1.1.1 Interface Address 172.21.0.2/16
+  Backup Designated Router (ID) 3.3.3.3, Interface Address 172.21.0.3
+  Multicast group memberships: OSPFAllRouters OSPFDesignatedRouters
+  Timer intervals configured, Hello 10s, Dead 40s, Wait 40s, Retransmit 5
+    Hello due in 6.143s
+  Neighbor Count is 1, Adjacent neighbor count is 1
+  Graceful Restart hello delay: 10s
+eth1 is up
+  ifindex 3, MTU 1500 bytes, BW 10000 Mbit <UP,BROADCAST,RUNNING,MULTICAST>
+  Internet Address 172.19.0.2/16, Broadcast 172.19.255.255, Area 0.0.0.0
+  MTU mismatch detection: enabled
+  Router ID 1.1.1.1, Network Type BROADCAST, Cost: 10
+  Transmit Delay is 1 sec, State Backup, Priority 1
+  Designated Router (ID) 2.2.2.2 Interface Address 172.19.0.3/16
+  Backup Designated Router (ID) 1.1.1.1, Interface Address 172.19.0.2
+  Multicast group memberships: OSPFAllRouters OSPFDesignatedRouters
+  Timer intervals configured, Hello 10s, Dead 40s, Wait 40s, Retransmit 5
+    Hello due in 6.502s
+  Neighbor Count is 1, Adjacent neighbor count is 1
+  Graceful Restart hello delay: 10s
+
+===== r2 =====
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+eth0 is up
+  ifindex 2, MTU 1500 bytes, BW 10000 Mbit <UP,BROADCAST,RUNNING,MULTICAST>
+  Internet Address 172.19.0.3/16, Broadcast 172.19.255.255, Area 0.0.0.0
+  MTU mismatch detection: enabled
+  Router ID 2.2.2.2, Network Type BROADCAST, Cost: 10
+  Transmit Delay is 1 sec, State DR, Priority 1
+  Designated Router (ID) 2.2.2.2 Interface Address 172.19.0.3/16
+  Backup Designated Router (ID) 1.1.1.1, Interface Address 172.19.0.2
+  Saved Network-LSA sequence number 0x80000002
+  Multicast group memberships: OSPFAllRouters OSPFDesignatedRouters
+  Timer intervals configured, Hello 10s, Dead 40s, Wait 40s, Retransmit 5
+    Hello due in 8.448s
+  Neighbor Count is 1, Adjacent neighbor count is 1
+  Graceful Restart hello delay: 10s
+eth1 is up
+  ifindex 3, MTU 1500 bytes, BW 10000 Mbit <UP,BROADCAST,RUNNING,MULTICAST>
+  Internet Address 172.20.0.3/16, Broadcast 172.20.255.255, Area 0.0.0.0
+  MTU mismatch detection: enabled
+  Router ID 2.2.2.2, Network Type BROADCAST, Cost: 10
+  Transmit Delay is 1 sec, State Backup, Priority 1
+  Designated Router (ID) 3.3.3.3 Interface Address 172.20.0.2/16
+  Backup Designated Router (ID) 2.2.2.2, Interface Address 172.20.0.3
+  Multicast group memberships: OSPFAllRouters OSPFDesignatedRouters
+  Timer intervals configured, Hello 10s, Dead 40s, Wait 40s, Retransmit 5
+    Hello due in 8.448s
+  Neighbor Count is 1, Adjacent neighbor count is 1
+  Graceful Restart hello delay: 10s
+
+===== r3 =====
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+eth0 is up
+  ifindex 2, MTU 1500 bytes, BW 10000 Mbit <UP,BROADCAST,RUNNING,MULTICAST>
+  Internet Address 172.20.0.2/16, Broadcast 172.20.255.255, Area 0.0.0.0
+  MTU mismatch detection: enabled
+  Router ID 3.3.3.3, Network Type BROADCAST, Cost: 10
+  Transmit Delay is 1 sec, State DR, Priority 1
+  Designated Router (ID) 3.3.3.3 Interface Address 172.20.0.2/16
+  Backup Designated Router (ID) 2.2.2.2, Interface Address 172.20.0.3
+  Multicast group memberships: OSPFAllRouters OSPFDesignatedRouters
+  Timer intervals configured, Hello 10s, Dead 40s, Wait 40s, Retransmit 5
+    Hello due in 8.468s
+  Neighbor Count is 1, Adjacent neighbor count is 1
+  Graceful Restart hello delay: 10s
+eth1 is up
+  ifindex 3, MTU 1500 bytes, BW 10000 Mbit <UP,BROADCAST,RUNNING,MULTICAST>
+  Internet Address 172.21.0.3/16, Broadcast 172.21.255.255, Area 0.0.0.0
+  MTU mismatch detection: enabled
+  Router ID 3.3.3.3, Network Type BROADCAST, Cost: 10
+  Transmit Delay is 1 sec, State Backup, Priority 1
+  Designated Router (ID) 1.1.1.1 Interface Address 172.21.0.2/16
+  Backup Designated Router (ID) 3.3.3.3, Interface Address 172.21.0.3
+  Multicast group memberships: OSPFAllRouters OSPFDesignatedRouters
+  Timer intervals configured, Hello 10s, Dead 40s, Wait 40s, Retransmit 5
+    Hello due in 8.468s
+  Neighbor Count is 1, Adjacent neighbor count is 1
+  Graceful Restart hello delay: 10s

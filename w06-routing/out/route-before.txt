@@ -1,0 +1,45 @@
+OSPF route tables before r1-eth1 failure
+Captured: 2026-10-27 13:33:52 +09:00
+Routers r1/r2/r3 are adjacent.
+===== r1 =====
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+O   172.19.0.0/16 [110/10] is directly connected, eth1, weight 1, 00:02:04
+O>* 172.20.0.0/16 [110/20] via 172.19.0.3, eth1, weight 1, 00:00:24
+  *                        via 172.21.0.3, eth0, weight 1, 00:00:24
+O   172.21.0.0/16 [110/10] is directly connected, eth0, weight 1, 00:02:04
+
+===== r2 =====
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+O   172.19.0.0/16 [110/10] is directly connected, eth0, weight 1, 00:00:35
+O   172.20.0.0/16 [110/10] is directly connected, eth1, weight 1, 00:00:01
+O>* 172.21.0.0/16 [110/20] via 172.19.0.2, eth0, weight 1, 00:00:30
+
+===== r3 =====
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+O>* 172.19.0.0/16 [110/20] via 172.21.0.2, eth1, weight 1, 00:00:30
+O   172.20.0.0/16 [110/10] is directly connected, eth0, weight 1, 00:00:41
+O   172.21.0.0/16 [110/10] is directly connected, eth1, weight 1, 00:00:35

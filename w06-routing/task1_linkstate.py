@@ -14,6 +14,7 @@ in the packet. Build it.
     python3 task1_linkstate.py --verify
 """
 import argparse
+import heapq
 
 # Undirected weighted graph: node -> {neighbour: cost}
 TOPOLOGY = {
@@ -33,7 +34,21 @@ def dijkstra(graph, source):
 
     You write the loop. `heapq` is allowed; `networkx` is not.
     """
-    raise NotImplementedError("implement Dijkstra")
+    if source not in graph:
+        return {}
+    distances = {source: 0}
+    queue = [(0, source)]
+    while queue:
+        cost, node = heapq.heappop(queue)
+        if cost != distances.get(node):
+            continue
+        for neighbour, weight in graph[node].items():
+            candidate = cost + weight
+            if candidate < distances.get(neighbour, float("inf")):
+                distances[neighbour] = candidate
+                heapq.heappush(queue, (candidate, neighbour))
+    distances.pop(source, None)
+    return distances
 
 
 def forwarding_table(graph, source):
@@ -48,7 +63,26 @@ def forwarding_table(graph, source):
     works, but think about what a router does when two shortest paths tie, and
     pick a rule. Say which in observation.md.
     """
-    raise NotImplementedError("implement the forwarding table")
+    if source not in graph:
+        return {}
+    distances = {source: 0}
+    first_hop = {}
+    queue = [(0, source)]
+    while queue:
+        cost, node = heapq.heappop(queue)
+        if cost != distances.get(node):
+            continue
+        for neighbour, weight in sorted(graph[node].items()):
+            candidate = cost + weight
+            hop = neighbour if node == source else first_hop[node]
+            old_cost = distances.get(neighbour, float("inf"))
+            old_hop = first_hop.get(neighbour)
+            if candidate < old_cost or (candidate == old_cost and hop < old_hop):
+                distances[neighbour] = candidate
+                first_hop[neighbour] = hop
+                heapq.heappush(queue, (candidate, neighbour))
+    first_hop.pop(source, None)
+    return first_hop
 
 
 def link_down(graph, a, b):

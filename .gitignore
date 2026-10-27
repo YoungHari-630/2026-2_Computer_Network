@@ -3,6 +3,8 @@
 # Week 5 explicitly requires the submission artifacts to be committed.
 !w05-ip-nat/out/
 !w05-ip-nat/out/**
+!w06-routing/out/
+!w06-routing/out/**
 # 캡처 파일 - 개인정보가 들어갈 수 있음
 *.pcap
 *.pcapng

@@ -1,0 +1,42 @@
+Windows tracert measurements (numeric hops; captured 2026-10-27, Korea Standard Time)
+Command: tracert -d -h 20 -w 500 <target>
+
+===== Domestic: www.korea.ac.kr [163.152.6.10] =====
+  1    <1 ms     2 ms    <1 ms  192.168.0.1
+  2     4 ms    14 ms    21 ms  39.127.66.1
+  3     1 ms     1 ms     1 ms  180.67.119.249
+  4     7 ms     2 ms     2 ms  180.67.119.241
+  5     5 ms     5 ms     5 ms  10.103.0.122
+  6     8 ms     9 ms     9 ms  10.222.25.124
+  7    10 ms     6 ms     4 ms  10.222.11.217
+  8-20  * * * Request timed out.
+Trace complete (destination did not respond within 20 hops).
+
+===== Overseas target: www.stanford.edu [3.33.186.135] =====
+DNS resolved the name to stanford.netlifyglobalcdn.com (CDN endpoint).
+  1     2 ms     1 ms     1 ms  192.168.0.1
+  2     1 ms     2 ms     1 ms  39.127.66.1
+  3     2 ms     2 ms     2 ms  180.67.119.249
+  4     4 ms     2 ms     2 ms  180.67.119.241
+  5     3 ms     3 ms     2 ms  10.103.0.122
+  6     8 ms     9 ms     7 ms  10.222.25.116
+  7     5 ms     4 ms     3 ms  10.222.10.143
+  8-14  * * * Request timed out.
+ 15    13 ms     7 ms     7 ms  3.33.186.135
+Trace complete.
+
+===== Anycast: 1.1.1.1 =====
+  1    <1 ms    <1 ms     1 ms  192.168.0.1
+  2     1 ms     1 ms     3 ms  39.127.66.1
+  3     1 ms     3 ms     1 ms  180.67.119.249
+  4     2 ms     2 ms     6 ms  180.67.119.241
+  5     9 ms     3 ms     2 ms  10.103.0.122
+  6     9 ms     7 ms     8 ms  10.222.25.116
+  7     7 ms    11 ms     9 ms  10.222.15.207
+  8     5 ms     4 ms     5 ms  39.120.4.162
+  9     7 ms     6 ms     5 ms  211.45.68.9
+ 10     5 ms    12 ms     4 ms  211.45.68.10
+ 11     * *     6 ms  211.56.189.162
+ 12    18 ms    41 ms    10 ms  141.101.82.17
+ 13     9 ms    14 ms     8 ms  1.1.1.1
+Trace complete.

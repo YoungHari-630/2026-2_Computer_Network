@@ -1,0 +1,25 @@
+Link failure reconvergence measurement
+Event: r1 eth1 was administratively disabled; stopwatch started immediately before the command.
+r1 local OSPF table change first observed after 1.89 seconds (1 s polling).
+r2 removed neighbor 1.1.1.1 after 32.68 seconds (1 s polling; default dead interval is 40 s).
+The timings differ because r1 receives an immediate interface-down event while r2 must wait for missed Hellos.
+
+r2 neighbor output after removal:
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
+3.3.3.3           1 Full/DR         1m07s             32.975s 172.20.0.2      eth1:172.20.0.3                      1     0     0
+
+Link restoration measurement
+Restored: 2026-10-27 13:35:52 +09:00
+r2 adjacency with r1 returned to Full after 3.4 seconds (0.5 s polling; Hello interval is 10 s).
+An arriving Hello re-establishes the adjacency; restoration does not wait for the 40 s Dead Interval.
+
+r2 neighbors after restoration:
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
+1.1.1.1           1 Full/Backup     0.569s            37.032s 172.19.0.2      eth0:172.19.0.3                      2     0     0
+3.3.3.3           1 Full/DR         2m00s             39.903s 172.20.0.2      eth1:172.20.0.3                      0     0     0

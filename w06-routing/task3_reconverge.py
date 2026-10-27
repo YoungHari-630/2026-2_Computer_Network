@@ -25,6 +25,8 @@ import heapq
 # routing, but "how many times did the CPU have to recompute the world" is
 # exactly what melted real routers.
 SPF_RUNS = 0
+LAST_DISTANCES = {}
+LAST_PARENTS = {}
 
 
 def dijkstra_table(graph, source):
@@ -33,9 +35,10 @@ def dijkstra_table(graph, source):
     Use THIS function whenever you need a full recompute. Rolling your own to
     dodge the counter is not an optimisation, it is cheating the meter.
     """
-    global SPF_RUNS
+    global SPF_RUNS, LAST_DISTANCES, LAST_PARENTS
     SPF_RUNS += 1
     best = {source: (0, None)}
+    parents = {}
     pq, done = [(0, source, None)], set()
     while pq:
         cost, node, first_hop = heapq.heappop(pq)
@@ -49,7 +52,10 @@ def dijkstra_table(graph, source):
             hop = nbr if node == source else first_hop
             if cost + w < best.get(nbr, (float("inf"), None))[0]:
                 best[nbr] = (cost + w, hop)
+                parents[nbr] = node
                 heapq.heappush(pq, (cost + w, nbr, hop))
+    LAST_DISTANCES = {d: value[0] for d, value in best.items()}
+    LAST_PARENTS = parents
     return {d: h for d, (_, h) in best.items() if d != source and h}
 
 
@@ -88,7 +94,42 @@ class YourRouter:
     """
 
     def __init__(self, graph, source):
-        raise NotImplementedError("write your router")
+        global LAST_DISTANCES, LAST_PARENTS
+        self.graph = {n: dict(edges) for n, edges in graph.items()}
+        self.source = source
+        self.table = dijkstra_table(self.graph, source)
+        self.distances, self.parents = dict(LAST_DISTANCES), dict(LAST_PARENTS)
+
+    def _recompute(self):
+        global LAST_DISTANCES, LAST_PARENTS
+        # The scored forwarding table always comes from the supplied reference SPF.
+        self.table = dijkstra_table(self.graph, self.source)
+        self.distances, self.parents = dict(LAST_DISTANCES), dict(LAST_PARENTS)
 
     def link_change(self, a, b, cost):
-        raise NotImplementedError
+        old_cost = self.graph[a].get(b)
+        if old_cost == cost:
+            return
+        tree_edges = {frozenset((node, parent)) for node, parent in self.parents.items()}
+        is_tree_edge = frozenset((a, b)) in tree_edges
+
+        if cost is None:
+            self.graph[a].pop(b, None)
+            self.graph[b].pop(a, None)
+            # Removing an edge outside the selected shortest-path tree cannot
+            # invalidate any currently installed route.
+            if is_tree_edge:
+                self._recompute()
+            return
+
+        self.graph[a][b] = cost
+        self.graph[b][a] = cost
+        if is_tree_edge:
+            self._recompute()
+            return
+
+        # An added or cheaper non-tree edge matters only if it can create a
+        # shorter route. Recompute on equality too, to preserve tie behavior.
+        da, db = self.distances.get(a, float("inf")), self.distances.get(b, float("inf"))
+        if da + cost <= db or db + cost <= da:
+            self._recompute()
