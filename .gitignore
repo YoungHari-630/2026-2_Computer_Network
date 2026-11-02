@@ -5,9 +5,12 @@
 !w05-ip-nat/out/**
 !w06-routing/out/
 !w06-routing/out/**
+!w07-ethernet-arp/out/
+!w07-ethernet-arp/out/**
 # 캡처 파일 - 개인정보가 들어갈 수 있음
 *.pcap
 *.pcapng
 !w05-ip-nat/out/*.pcapng
+!w07-ethernet-arp/out/*.pcapng
 __pycache__/
 *.pyc

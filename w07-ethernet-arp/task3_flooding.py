@@ -73,7 +73,45 @@ class YourSwitch:
     BROADCAST = "ff:ff:ff:ff:ff:ff"
 
     def __init__(self, ports, capacity):
-        raise NotImplementedError("write your switch")
+        self.ports = ports
+        self.capacity = capacity
+        # OrderedDict gives an LRU tie-break between equally frequent MACs.
+        self.table = OrderedDict()
+        self._frequency = {}
+        self._candidate_frequency = OrderedDict()
+        self._candidate_limit = max(1, capacity * 4)
 
     def handle(self, frame, in_port):
-        raise NotImplementedError
+        src, dst, _ = frame
+
+        # Count all observed source frames, including sources not admitted yet.
+        if src in self.table:
+            self._frequency[src] += 1
+            self.table.move_to_end(src)
+            self.table[src] = in_port
+        else:
+            seen = self._candidate_frequency.get(src, 0) + 1
+            self._candidate_frequency[src] = seen
+            self._candidate_frequency.move_to_end(src)
+            while len(self._candidate_frequency) > self._candidate_limit:
+                self._candidate_frequency.popitem(last=False)
+            if len(self.table) < self.capacity:
+                self.table[src] = in_port
+                self._frequency[src] = seen
+                self._candidate_frequency.pop(src, None)
+            elif self.capacity and seen > min(self._frequency.values()):
+                # A new MAC must show more observed demand than the least-used
+                # resident before it can displace that resident.
+                # min() preserves OrderedDict iteration order for ties, so the
+                # least recently used equally frequent entry leaves first.
+                victim = min(self.table, key=lambda mac: self._frequency[mac])
+                del self.table[victim]
+                del self._frequency[victim]
+                self.table[src] = in_port
+                self._frequency[src] = seen
+                self._candidate_frequency.pop(src, None)
+
+        if dst == self.BROADCAST or dst not in self.table:
+            return [port for port in range(self.ports) if port != in_port]
+        out_port = self.table[dst]
+        return [] if out_port == in_port else [out_port]

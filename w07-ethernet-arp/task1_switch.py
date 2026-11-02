@@ -30,7 +30,16 @@ class Switch:
     AGE_SECONDS = 300
 
     def __init__(self, ports):
-        raise NotImplementedError("write your switch")
+        self.ports = ports
+        self._now = None
+        # MAC -> (port, 마지막으로 관측한 시각)
+        self._table = {}
+
+    def _expire(self, now):
+        expired = [mac for mac, (_, seen) in self._table.items()
+                   if now - seen > self.AGE_SECONDS]
+        for mac in expired:
+            del self._table[mac]
 
     def handle(self, frame, in_port):
         """Learn from the source, then decide where the frame goes.
@@ -46,11 +55,26 @@ class Switch:
         Rule 5 is why a switch works at all before it has learned anything, and
         it is also what Task 3 is about.
         """
-        raise NotImplementedError
+        src, dst, now = frame
+        self._now = now
+        self._expire(now)
+        # 최근에 관측한 위치가 우선이므로 이동한 호스트도 갱신된다.
+        self._table[src] = (in_port, now)
+
+        if dst == self.BROADCAST or dst not in self._table:
+            return [port for port in range(self.ports) if port != in_port]
+        out_port, _ = self._table[dst]
+        return [] if out_port == in_port else [out_port]
 
     def table(self):
         """{mac: port} as currently learned. Aged-out entries must be gone."""
-        raise NotImplementedError
+        # 조회 시점의 가장 최근 시각을 추정할 수 있는 인자는 없으므로,
+        # 마지막 관측 시각과 현재 시각을 기준으로 expire는 handle에서 수행한다.
+        # table()의 호출 시각도 필요하므로 마지막 frame 시각을 저장한다.
+        now = getattr(self, "_now", None)
+        if now is not None:
+            self._expire(now)
+        return {mac: port for mac, (port, _) in self._table.items()}
 
 
 # ------------------------------------------------------------------- harness
